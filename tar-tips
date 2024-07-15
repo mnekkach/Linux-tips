@@ -1,0 +1,25 @@
+#################################################
+               ______   ____  ____  
+               |      | /    ||    \ 
+               |      ||  o  ||  D  )
+               |_|  |_||     ||    / 
+                 |  |  |  _  ||    \ 
+                 |  |  |  |  ||  .  \
+                 |__|  |__|__||__|\_|
+               
+               Autor   : Mohamed NEKKACHE
+               Contact : mnekkach@gmail.com
+#################################################
+
+#1.Extraction 
+    - File with .tar.gz files
+        $ tar -xvf bar.tar.gz
+    
+    - Extract in another folder
+        $ tar -xvf foo.tar.gz -C /path/where/extract
+
+#2.Listing
+    - List the contents of a .tar.gz file on Linux
+        $ tar -tvf foo.tar.gz
+
+

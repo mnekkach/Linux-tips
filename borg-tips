@@ -1,0 +1,39 @@
+--------------------------------------------------------
+                      ____                  
+                     |  _ \                 
+                     | |_) | ___  _ __ __ _ 
+                     |  _ < / _ \| '__/ _` |
+                     | |_) | (_) | | | (_| |
+                     |____/ \___/|_|  \__, |
+                                       __/ |
+                                      |___/ 
+
+Autor   : Mohamed NEKKACHE
+Contact : mnekkach@gmail.com
+--------------------------------------------------------
+#1. Initialize a backup
+    
+    - Initialize without encrypting the files
+    $ borg init -e none /path/where/create/backup
+
+    - Initialize with crypting the files
+    $ borg init -e repokey /path/where/create/backup
+
+#2. Create the first backup
+    
+    - Simple backup
+    $ borg create /path/created/with/borg/init::<name_of_bakcup> /path/folder/to/backup
+
+    - Add stats
+    $ borg create --stats /path/created/with/borg/init::<name_of_bakcup> /path/folder/to/backup
+
+    - Add compression
+    $ borg create -C <type> /path/created/with/borg/init::<name_of_bakcup> /path/folder/to/backup
+        - <type> : auto, lz4, lzma,i (i=0..9), zlib,i (i=1..9), zstd,i (i=1..20), none
+
+    - Add progression
+    $ borg create --progress /path/created/with/borg/init::<name_of_bakcup> /path/folder/to/backup
+
+    - Exclude folder, extension ...
+    $ borg create --exclude '.cache *.log' /path/created/with/borg/init::<name_of_bakcup> /path/folder/to/backup
+

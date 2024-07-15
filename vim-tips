@@ -1,0 +1,36 @@
+--------------------------------------------------------
+ __      _______ __  __   _______ _____ _____   _____ 
+ \ \    / /_   _|  \/  | |__   __|_   _|  __ \ / ____|
+  \ \  / /  | | | \  / |    | |    | | | |__) | (___  
+   \ \/ /   | | | |\/| |    | |    | | |  ___/ \___ \ 
+    \  /   _| |_| |  | |    | |   _| |_| |     ____) |
+     \/   |_____|_|  |_|    |_|  |_____|_|    |_____/ 
+                                                      
+Autor   : Mohamed NEKKACHE
+Contact : mnekkach@gmail.com
+--------------------------------------------------------
+#1. Naviagtion:
+
+#2. Text Editing:
+    - Use i to enter mode before the cursor and a to enter insert mode after the cursor.
+    - Use x to delete the charactere under the cursor and dd to delete or cut an entire line.
+    - Use yy to copy an entire line.
+    - Use p to paste the line copied after the current line.
+    - Use P to paste the line copied before the current line.
+
+#3. Search and Replace:
+    - Use /foo to search foo in the text.
+    - Use :s/foo/bar to replace the first foo with bar in the current line.
+    - Use :s/foo/bar/g to replace all foo with bar in the current line.
+    - Use :%s/foo/bar/g to replace all occurences of foo with bar.
+    - Use :ardo %s/foo/bar/g | update to replace all occurences of foo with bar in all files opened.
+
+#4. Erase:
+    - Use dd to erase the current line.
+    - Use dd + dG to erase all line in the text file.
+
+#5. Format code:
+    - Indent a block of lines : Place the cursor at the first line of the block that you want to indent and use the > key to indent the block.
+
+#5. Other Features:
+
