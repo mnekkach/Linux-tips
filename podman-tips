@@ -1,0 +1,57 @@
+--------------------------------------------------------
+         ______ ______________  ___  ___   _   _       
+         | ___ \  _  |  _  \  \/  | / _ \ | \ | |      
+         | |_/ / | | | | | | .  . |/ /_\ \|  \| |      
+         |  __/| | | | | | | |\/| ||  _  || . ` |      
+         | |   \ \_/ / |/ /| |  | || | | || |\  |      
+         \_|    \___/|___/ \_|  |_/\_| |_/\_| \_/      
+                                           
+ _____ _____ _   _ _____ ___  _____ _   _  ___________ 
+/  __ \  _  | \ | |_   _/ _ \|_   _| \ | ||  ___| ___ \
+| /  \/ | | |  \| | | |/ /_\ \ | | |  \| || |__ | |_/ /
+| |   | | | | . ` | | ||  _  | | | | . ` ||  __||    / 
+| \__/\ \_/ / |\  | | || | | |_| |_| |\  || |___| |\ \ 
+ \____/\___/\_| \_/ \_/\_| |_/\___/\_| \_/\____/\_| \_|
+                                                                                                                 
+Autor   : Mohamed NEKKACHE
+Contact : mnekkach@gmail.com
+--------------------------------------------------------
+#0. Divers tips
+    - Go outside container              : $ <CTRL> + P <CTRL> + Q
+    - Go outside container with tmux
+            - Create a tmux session     : $ tmux new -s <CONTAINER_NAME> podman run -it debian /bin/bash
+            - To detach use             : $ <CTRL> + A, D
+            - To go back in the session : $ tmux attach -t <CONTAINER_NAME>
+
+#1. Container Management
+    - Running containers                       : $ podman ps
+    - All containers                           : $ podman ps -a
+    - Start container                          : $ podman start <CONTAINER_ID | NAME>
+    - Create and start a new container         : $ podman run -it <IMAGE> /bin/bash
+    - Stop container                           : $ podman stop <CONTAINER_ID|NAME>
+    - Force a stop container                   : $ podman kill <CONTAINER_ID|NAME>
+    - Stop all running containers              : $ podman stop $(podman ps -q)
+    - Attach to a container's terminal         : $ podman attach <CONTAINER_ID|NAME>
+    - Open a shell inside a running container  : $ podman exec -it <CONTAINER_ID|NAME> /bin/bash
+    - Remove a stopped container               : $ podman rm <CONTAINER_ID|NAME>
+    - Remove all stopped containers            : $ podman rm $(podman ps -aq)
+
+#2. Image Management
+    - List local images  : $ podman images
+    - Download an image  : $ podman pull <IMAGE> (Example : $ podman pull debian)
+    - Remove an image    : $ podman rmi <IMAGE_ID|NAME>
+    - Remove all iamges  : $ podman rmi -a
+
+#3. Volume Management (Persitent Storage)
+    - List volumes                  : $ podman volume ls
+    - Create a volume               : $ podman volume create <VOLUME_NAME>
+    - Mount a volume in a container : $ podman run -it -v <VOLUME_NAME>:/path/in/container <IAMGE> /bin/bash
+    - Remove a volume               : $ podman volume rm <VOLUME_NAME>
+
+#4. Data transfert between Host and Container
+    - Copy a file from host to container : $ podman cp <FILE> <CONTAINER_ID>:/destination/path
+    - Copy a file from container to host : $ podman cp <CONTAINER_ID>:/path/<FILE> ./path/<DESTINATION>
+
+#5. Logs and Monitoring
+    - View containers logs   : $ podman logs <CONTAINER_ID>
+    - Monitor resource usage : $ podman stats 

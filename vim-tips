@@ -10,7 +10,11 @@ Autor   : Mohamed NEKKACHE
 Contact : mnekkach@gmail.com
 --------------------------------------------------------
 #1. Naviagtion:
-
+    - Use h, j, k, l to move left, down, up, and right.
+    - Use gg to go to the beginning of the file and G to go to the end.
+    - Use H, M, L to move to the top, middle, and bottom of the screen.
+    - Use :<line_number> to jump to a specific line. For example, :42 goes to line 42.
+    - Use <line_number>G to quickly go to a specific line. For example, 42G goes to line 42.
 #2. Text Editing:
     - Use i to enter mode before the cursor and a to enter insert mode after the cursor.
     - Use x to delete the charactere under the cursor and dd to delete or cut an entire line.
@@ -28,9 +32,44 @@ Contact : mnekkach@gmail.com
 #4. Erase:
     - Use dd to erase the current line.
     - Use dd + dG to erase all line in the text file.
+    
+    - Use di' to erase all characters between the '.
+    - Use di" to erase all characters between the ".
+    - Use di( to erase all characters between the (.
+    - Use di{ to erase all characters between the {.
+    - Use di[ to erase all characters between the [.
+
+    - Use da' to erase all characters between the ' including '.
+    - Use da" to erase all characters between the " including ".
+    - Use da( to erase all characters between the ( including (.
+    - Use da{ to erase all characters between the { including {.
+    - Use da[ to erase all characters between the [ including [.
+
+    - Use ci/ca as di/da and pass in <INSERT> mode.
 
 #5. Format code:
     - Indent a block of lines : Place the cursor at the first line of the block that you want to indent and use the > key to indent the block.
 
-#5. Other Features:
+#6. Completion:
+    - <INSERT> Completion of word already exist in the file : <CRTL> p 
+    - <INSERT> Completion of file  :  <CTRL> x <CTRL> f
+
+#7. Open files
+    - <NORMAL> Move your cursor on the path file and press gf. Vim open file if he exists in a new buffer. (e.g /home/$USER/.bashrc)
+
+#8. Tags:
+    - [TERMINAL] Create a ctags file with all definition of the source code : $ctags -R .
+    - Move to the definition of the function : <CRTL> ]
+    - Return to the callback of the function : <CTRL> t
+
+#8. Buffer:
+    - Use :ls or :buffers to list all open buffers.
+    - Use :bnext (or :bn) to switch to the next buffer.
+    - Use :bprev (or :bp) to switch to the previous buffer.
+    - Use :buffer <n> (or :nb) to jump to buffer number n.
+    - Use Ctrl+^ to quickly toggle between the last two buffers.
+    - Use :bdelete (or :bd) to close the current buffer.
+    - Use :bd <n> to close a specific buffer by number.
+    - Use :bd! to force-close a buffer without saving changes.
+
 
