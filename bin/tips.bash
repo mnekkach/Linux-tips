@@ -1,7 +1,46 @@
 #!/usr/bin/env bash
 
-VERSION="1.0.0"
+VERSION=1.0.0
+CONFIG_DIR="$HOME/.linux-tips"
+LAST_CHECK_FILE="$CONFIG_DIR/last_update_check"
 TIPS_SHARE_DIR="$HOME/.local/share/linux-tips"
+LAST_CHECK_FILE="$TIPS_SHARE_DIR/last_update_check"
+UPDATE_INTERVAL_DAYS=15
+
+mkdir -p "$CONFIG_DIR"
+
+# --- Function to check updates ---
+check_updates() {
+    local now last_check days_diff
+    now=$(date +%s)
+
+    # If file doesn't exist, force check
+    if [ ! -f "$LAST_CHECK_FILE" ]; then
+        last_check=0
+    else
+        last_check=$(cat "$LAST_CHECK_FILE")
+    fi
+
+    # Calculate difference in days
+    days_diff=$(( (now - last_check) / 86400 ))
+
+    if [ "$days_diff" -ge "$UPDATE_INTERVAL_DAYS" ]; then
+        echo "$now" > "$LAST_CHECK_FILE" # Update last check timestamp
+
+        # Fetch remote version
+        REMOTE_VERSION=$(curl -s https://raw.githubusercontent.com/mnekkach/linux-tips/main/VERSION)
+
+        if [ -n "$REMOTE_VERSION" ] && [ "$REMOTE_VERSION" != "$VERSION" ]; then
+            echo "⚠️  A new version of Linux Tips is available: $REMOTE_VERSION (current: $VERSION)"
+            echo "Run: tips --update to upgrade"
+            echo
+            read -n 1 -s -r -p "Press any key to continue..."
+            echo
+        fi
+    fi
+}
+
+
 
 show_help() {
     cat <<EOF
@@ -48,6 +87,7 @@ case "$1" in
         ;;
 esac
 
+check_updates
 # Handle tips for a specific topic
 TOPIC="$1"
 FILE="$TIPS_SHARE_DIR/$TOPIC-tips"
