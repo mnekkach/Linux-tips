@@ -3,7 +3,7 @@
 VERSION=1.0.0
 TIPS_SHARE_DIR="$HOME/.local/share/linux-tips"
 
-if [ $1 = "--version" ]
+if [ "$1" = "--version" ]
 then
     echo "Version $VERSION"
     exit 0
