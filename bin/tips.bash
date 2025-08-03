@@ -2,9 +2,9 @@
 
 VERSION=1.0.0
 CONFIG_DIR="$HOME/.linux-tips"
-LAST_CHECK_FILE="$CONFIG_DIR/last_update_check"
 TIPS_SHARE_DIR="$HOME/.local/share/linux-tips"
-LAST_CHECK_FILE="$TIPS_SHARE_DIR/last_update_check"
+
+LAST_CHECK_FILE="$CONFIG_DIR/last_update_check"
 UPDATE_INTERVAL_DAYS=15
 
 mkdir -p "$CONFIG_DIR"
@@ -16,6 +16,8 @@ check_updates() {
 
     # If file doesn't exist, force check
     if [ ! -f "$LAST_CHECK_FILE" ]; then
+        echo "last_update_check does not exist"
+        echo "$now" > "$LAST_CHECK_FILE"
         last_check=0
     else
         last_check=$(cat "$LAST_CHECK_FILE")
@@ -25,7 +27,9 @@ check_updates() {
     days_diff=$(( (now - last_check) / 86400 ))
 
     if [ "$days_diff" -ge "$UPDATE_INTERVAL_DAYS" ]; then
-        echo "$now" > "$LAST_CHECK_FILE" # Update last check timestamp
+        # TODO: Write the date in the last_update_check file after the update is done.
+        #       Move the next line after the update was performed
+        #echo "$now" > "$LAST_CHECK_FILE" # Update last check timestamp
 
         # Fetch remote version
         REMOTE_VERSION=$(curl -s https://raw.githubusercontent.com/mnekkach/linux-tips/main/VERSION)
